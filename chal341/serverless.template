@@ -14,10 +14,11 @@
         "Policies": [
           "AWSLambdaFullAccess"
         ],
-		"Environment": {
+        "Environment": {
           "Variables": {
             "ExchangeApiUrl": "https://api.exchangeratesapi.io/",
-            "ExchangeApiPath": "latest?base={0}&symbols={1}"
+            "ExchangeApiPath": "latest?base={0}&symbols={1}",
+            "HomeCurrency": "BRL"
           }
         },
         "Events": {
