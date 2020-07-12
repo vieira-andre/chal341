@@ -1,5 +1,7 @@
 ﻿using chal341.Contracts;
+using chal341.Extensions;
 using FluentValidation;
+using System;
 
 namespace chal341.Validators
 {
@@ -11,7 +13,20 @@ namespace chal341.Validators
                 .NotEmpty();
 
             RuleFor(x => x.Fee)
-                .NotNull();
+                .NotEmpty();
+
+            RuleFor(x => x.Fee)
+                .Custom((fee, context) =>
+                {
+                    try
+                    {
+                        _ = fee.ToDecimal();
+                    }
+                    catch (Exception ex)
+                    {
+                        context.AddFailure(ex.Message);
+                    }
+                });
         }
     }
 }
