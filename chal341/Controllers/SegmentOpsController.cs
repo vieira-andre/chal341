@@ -34,7 +34,7 @@ namespace chal341.Controllers
         [HttpPost("fee")]
         public async Task<IActionResult> SetExchangeFeeAsync([FromBody] SetExchangeFeeRequest request)
         {
-            return new GetExchangeFeeResponse { Segment = request.Segment, FeeCharged = request.Fee };
+            await _segmentOpsService.AddExchangeFeeAsync(request);
 
             return Ok();
         }
