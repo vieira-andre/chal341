@@ -1,5 +1,7 @@
-using Amazon.DynamoDBv2;
 using chal341.Filters;
+using chal341.Mappers;
+using chal341.Repositories;
+using chal341.Services;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,7 +36,9 @@ namespace chal341
 
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Chal341 API", Version = "v1" }); });
 
-            services.AddAWSService<IAmazonDynamoDB>(ServiceLifetime.Scoped);
+            services.AddScoped<IMapper, Mapper>();
+            services.AddScoped<ISegmentOpsService, SegmentOpsService>();
+            services.AddScoped<IExchangeFeeRepository, ExchangeFeeRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
