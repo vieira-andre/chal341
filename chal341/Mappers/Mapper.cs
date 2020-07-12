@@ -5,21 +5,12 @@ namespace chal341.Mappers
 {
     public class Mapper : IMapper
     {
-        public GetExchangeFeeResponse ToGetExchangeFeeContract(ExchangeFeeDb exchangeFeeDb)
-        {
-            return new GetExchangeFeeResponse
-            {
-                Segment = exchangeFeeDb.Segment,
-                FeeCharged = exchangeFeeDb.FeeCharged
-            };
-        }
-
-        public ExchangeFeeDb ToExchangeFeeDbModel(SetExchangeFeeRequest setExchangeFeeRequest)
+        public ExchangeFeeDb ToExchangeFeeDbModel(SetExchangeFeeRequest request)
         {
             return new ExchangeFeeDb
             {
-                Segment = setExchangeFeeRequest.Segment,
-                FeeCharged = (decimal)setExchangeFeeRequest.Fee
+                ClientSegment = request.Segment.ToString(),
+                FeeCharged = decimal.Parse(request.Fee)
             };
         }
     }
