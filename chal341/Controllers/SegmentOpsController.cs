@@ -14,20 +14,21 @@ namespace chal341.Controllers
         [HttpGet("fee/{Segment}")]
         public async Task<GetExchangeFeeResponse> GetExchangeFeeAsync([FromRoute] GetExchangeFeeRequest request)
         {
-            return new GetExchangeFeeResponse { Segment = request.Segment, FeeCharged = 5.66M };
+            throw new NotImplementedException();
         }
 
         [HttpGet("fees")]
         public async Task<IList<GetExchangeFeeResponse>> GetExchangeFeesAsync()
         {
-            return new List<GetExchangeFeeResponse>() { new GetExchangeFeeResponse { Segment = ClientSegment.PRIV, FeeCharged = 5.66M },
-                new GetExchangeFeeResponse { Segment = ClientSegment.PSNL, FeeCharged = 5.66M } };
+            throw new NotImplementedException();
         }
 
         [HttpPost("fee")]
-        public async Task<GetExchangeFeeResponse> SetExchangeFeeAsync([FromBody] SetExchangeFeeRequest request)
+        public async Task<IActionResult> SetExchangeFeeAsync([FromBody] SetExchangeFeeRequest request)
         {
             return new GetExchangeFeeResponse { Segment = request.Segment, FeeCharged = request.Fee };
+
+            return Ok();
         }
     }
 }
