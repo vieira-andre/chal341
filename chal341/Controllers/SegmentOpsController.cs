@@ -10,7 +10,7 @@ namespace chal341.Controllers
     [Route("api/segment")]
     public class SegmentOpsController : ControllerBase
     {
-        [HttpGet("fee/{segment}")]
+        [HttpGet("fee/{Segment}")]
         public async Task<GetExchangeFeeResponse> GetExchangeFeeAsync([FromRoute] GetExchangeFeeRequest request)
         {
             return new GetExchangeFeeResponse { Segment = request.Segment, FeeCharged = 5.66M };
