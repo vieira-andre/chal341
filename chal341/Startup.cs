@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -19,6 +20,10 @@ namespace chal341
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services
+                .AddMvc()
+                .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<Startup>());
 
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Chal341 API", Version = "v1" }); });
         }
