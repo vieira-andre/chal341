@@ -6,6 +6,6 @@ namespace chal341.Contracts
     {
         public ClientSegment Segment { get; set; }
 
-        public decimal? Fee { get; set; }
+        public string Fee { get; set; }
     }
 }
