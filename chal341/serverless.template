@@ -45,22 +45,14 @@
         "TableName":"ExchangeFee",
         "AttributeDefinitions":[
           {
-            "AttributeName":"Segment",
-            "AttributeType":"S"
-          },
-          {
-            "AttributeName":"HomeCurrency",
+            "AttributeName":"ClientSegment",
             "AttributeType":"S"
           }
         ],
         "KeySchema":[
           {
-            "AttributeName":"Segment",
+            "AttributeName":"ClientSegment",
             "KeyType":"HASH"
-          },
-          {
-            "AttributeName":"HomeCurrency",
-            "KeyType":"RANGE"
           }
         ],
         "ProvisionedThroughput":{
