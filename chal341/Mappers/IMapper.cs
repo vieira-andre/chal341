@@ -5,8 +5,6 @@ namespace chal341.Mappers
 {
     public interface IMapper
     {
-        GetExchangeFeeResponse ToGetExchangeFeeContract(ExchangeFeeDb exchangeFee);
-
-        ExchangeFeeDb ToExchangeFeeDbModel(SetExchangeFeeRequest setExchangeFeeRequest);
+        ExchangeFeeDb ToExchangeFeeDbModel(SetExchangeFeeRequest request);
     }
 }
