@@ -1,3 +1,6 @@
+using Amazon;
+using Amazon.DynamoDBv2;
+using Amazon.Extensions.NETCore.Setup;
 using chal341.Filters;
 using chal341.Mappers;
 using chal341.Repositories;
@@ -39,6 +42,9 @@ namespace chal341
             services.AddScoped<IMapper, Mapper>();
             services.AddScoped<ISegmentOpsService, SegmentOpsService>();
             services.AddScoped<IExchangeFeeRepository, ExchangeFeeRepository>();
+
+            services.AddAWSService<IAmazonDynamoDB>(ServiceLifetime.Scoped);
+            services.AddDefaultAWSOptions(new AWSOptions { Region = RegionEndpoint.SAEast1 });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
