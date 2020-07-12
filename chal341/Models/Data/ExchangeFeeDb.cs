@@ -6,7 +6,7 @@ namespace chal341.Models.Data
     public class ExchangeFeeDb
     {
         [DynamoDBHashKey]
-        public ClientSegment Segment { get; set; }
+        public string ClientSegment { get; set; }
 
         public decimal FeeCharged { get; set; }
     }
