@@ -8,6 +8,7 @@ namespace chal341.Controllers
 {
     [ApiController]
     [Route("api/segment")]
+    [Produces("application/json")]
     public class SegmentOpsController : ControllerBase
     {
         [HttpGet("fee/{Segment}")]
