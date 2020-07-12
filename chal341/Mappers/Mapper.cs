@@ -1,4 +1,5 @@
 ﻿using chal341.Contracts;
+using chal341.Extensions;
 using chal341.Models.Data;
 
 namespace chal341.Mappers
@@ -10,7 +11,7 @@ namespace chal341.Mappers
             return new ExchangeFeeDb
             {
                 ClientSegment = request.Segment.ToString(),
-                FeeCharged = decimal.Parse(request.Fee)
+                FeeCharged = request.Fee.ToDecimal()
             };
         }
     }
