@@ -10,19 +10,19 @@ namespace chal341.Controllers
     [Route("api/segment")]
     public class SegmentOpsController : ControllerBase
     {
-        [HttpGet]
+        [HttpGet("fee/{segment}")]
         public async Task<GetExchangeFeeResponse> GetExchangeFeeAsync([FromRoute] GetExchangeFeeRequest request)
         {
             throw new NotImplementedException();
         }
 
-        [HttpGet]
+        [HttpGet("fees")]
         public async Task<IList<GetExchangeFeeResponse>> GetExchangeFeesAsync()
         {
             throw new NotImplementedException();
         }
 
-        [HttpPost]
+        [HttpPost("fee")]
         public async Task<GetExchangeFeeResponse> SetExchangeFeeAsync([FromBody] SetExchangeFeeRequest request)
         {
             throw new NotImplementedException();
