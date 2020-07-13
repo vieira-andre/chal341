@@ -1,7 +1,5 @@
 ﻿using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
-using chal341.Models;
-using chal341.Models.Data;
 using System.Threading.Tasks;
 
 namespace chal341.Repositories
@@ -20,9 +18,9 @@ namespace chal341.Repositories
             await _table.PutItemAsync(documentModel);
         }
 
-        public Task<ExchangeFeeDb> GetExchangeFeeAsync(ClientSegment segment)
+        public async Task<Document> GetExchangeFeeAsync(Document request)
         {
-            throw new System.NotImplementedException();
+            return await _table.GetItemAsync(request);
         }
     }
 }
