@@ -6,6 +6,14 @@ namespace chal341.Extensions
 {
     public static class Extensions
     {
+        public static ClientSegment ParseFromString(this string segmentAsString)
+        {
+            if (Enum.TryParse(segmentAsString, out ClientSegment result) && !result.Equals(default))
+                return result;
+            else
+                throw new ArgumentException($"The string cannot be parsed to a valid value of {nameof(ClientSegment)}.");
+        }
+
         public static decimal ToInvariantDecimal(this string decimalAsString)
         {
             if (decimal.TryParse(decimalAsString, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out decimal result))
@@ -15,12 +23,9 @@ namespace chal341.Extensions
                     $"If there is a decimal point, it must be invariant ({CultureInfo.InvariantCulture.NumberFormat.NumberDecimalSeparator})");
         }
 
-        public static ClientSegment ParseFromString(this string segmentAsString)
+        public static string ToInvariantString(this decimal value)
         {
-            if (Enum.TryParse(segmentAsString, out ClientSegment result) && !result.Equals(default))
-                return result;
-            else
-                throw new ArgumentException($"The string cannot be parsed to a valid value of {nameof(ClientSegment)}.");
+            return value.ToString(CultureInfo.InvariantCulture);
         }
     }
 }
