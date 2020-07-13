@@ -4,7 +4,9 @@ namespace chal341.Contracts
 {
     public class GetPriceQuotationRequest
     {
-        public string Code { get; set; }
+        private string code;
+
+        public string Code { get => code; set => code = value.ToUpper(); }
 
         public int Units { get; set; }
 
