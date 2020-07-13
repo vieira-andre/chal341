@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 using System.Text.Json.Serialization;
 
 namespace chal341
@@ -44,7 +45,10 @@ namespace chal341
             services.AddScoped<IExchangeFeeRepository, ExchangeFeeRepository>();
 
             services.AddAWSService<IAmazonDynamoDB>(ServiceLifetime.Scoped);
-            services.AddDefaultAWSOptions(new AWSOptions { Region = RegionEndpoint.SAEast1 });
+            services.AddDefaultAWSOptions(new AWSOptions 
+            { 
+                Region = RegionEndpoint.GetBySystemName(Environment.GetEnvironmentVariable("AWS_REGION")) 
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

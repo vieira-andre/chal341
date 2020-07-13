@@ -13,6 +13,7 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
+        "AWS_REGION": "sa-east-1",
         "HomeCurrency": "BRL",
         "Locale": "pt-BR"
       }
@@ -22,6 +23,7 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
+        "AWS_REGION": "sa-east-1",
         "HomeCurrency": "BRL",
         "Locale": "pt-BR"
       },
