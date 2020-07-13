@@ -17,6 +17,9 @@ namespace chal341.Controllers
             _currencyOpsService = currencyOpsService;
         }
 
+        /// <summary>
+        /// Returns the price quotation (BRL) considering both the amount of foreign currency and the client segment provided.
+        /// </summary>
         [HttpGet("price")]
         public async Task<ActionResult<GetPriceQuotationResponse>> GetPriceQuotationAsync([FromQuery] GetPriceQuotationRequest request)
         {
@@ -28,6 +31,9 @@ namespace chal341.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Returns the exchange rate between BRL and a given foreign currency.
+        /// </summary>
         [HttpGet("exchangeRate/{Code}")]
         public async Task<ActionResult<GetExchangeRateResponse>> GetExchangeRateAsync([FromRoute] GetExchangeRateRequest request)
         {

@@ -19,6 +19,9 @@ namespace chal341.Controllers
             _segmentOpsService = segmentOpsService;
         }
 
+        /// <summary>
+        /// Retrieves the exchange fee set for a given client segment.
+        /// </summary>
         [HttpGet("fee/{Segment}")]
         public async Task<ActionResult<GetExchangeFeeResponse>> GetExchangeFeeAsync([FromRoute] GetExchangeFeeRequest request)
         {
@@ -30,6 +33,9 @@ namespace chal341.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Retrieves all the exchange fees set.
+        /// </summary>
         [HttpGet("fees")]
         public async Task<ActionResult<IEnumerable<GetExchangeFeeResponse>>> GetAllExchangeFeesAsync()
         {
@@ -41,6 +47,9 @@ namespace chal341.Controllers
             return Ok(results);
         }
 
+        /// <summary>
+        /// Sets the exchange fee for the provided client segment. In case it already exists, the value is updated.
+        /// </summary>
         [HttpPut("fee")]
         public async Task<IActionResult> AddExchangeFeeAsync([FromBody] AddExchangeFeeRequest request)
         {
