@@ -40,5 +40,13 @@ namespace chal341.Mappers
                 ["ClientSegment"] = request.Segment.ToString()
             };
         }
+
+        public Document ToDocumentModel(GetPriceQuotationRequest request)
+        {
+            return new Document
+            {
+                ["ClientSegment"] = request.Segment.ToString()
+            };
+        }
     }
 }

@@ -10,6 +10,8 @@ namespace chal341.Mappers
 
         Document ToDocumentModel(GetExchangeFeeRequest request);
 
+        Document ToDocumentModel(GetPriceQuotationRequest request);
+
         GetExchangeFeeResponse ToContract(Document item);
 
         IEnumerable<GetExchangeFeeResponse> ToContract(IEnumerable<Document> items);
