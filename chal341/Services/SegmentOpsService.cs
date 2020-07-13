@@ -20,7 +20,7 @@ namespace chal341.Services
 
         public async Task AddExchangeFeeAsync(AddExchangeFeeRequest request)
         {
-            var exchangeFeeDb = _map.ToExchangeFeeDbModel(request);
+            var exchangeFeeDb = _map.ToDocumentModel(request);
 
             await _exchangeFeeRepository.AddExchangeFeeAsync(exchangeFeeDb);
         }

@@ -1,5 +1,5 @@
 ﻿using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.DataModel;
+using Amazon.DynamoDBv2.DocumentModel;
 using chal341.Models;
 using chal341.Models.Data;
 using System.Threading.Tasks;
@@ -8,16 +8,16 @@ namespace chal341.Repositories
 {
     public class ExchangeFeeRepository : IExchangeFeeRepository
     {
-        private readonly DynamoDBContext _context;
+        private readonly Table _table;
 
-        public ExchangeFeeRepository(IAmazonDynamoDB dymanoDbClient)
+        public ExchangeFeeRepository(IAmazonDynamoDB dynamoDbClient)
         {
-            _context = new DynamoDBContext(dymanoDbClient);
+            _table = Table.LoadTable(dynamoDbClient, "ExchangeFee");
         }
 
-        public async Task AddExchangeFeeAsync(ExchangeFeeDb exchangeFeeDb)
+        public async Task AddExchangeFeeAsync(Document documentModel)
         {
-            await _context.SaveAsync(exchangeFeeDb);
+            await _table.PutItemAsync(documentModel);
         }
 
         public Task<ExchangeFeeDb> GetExchangeFeeAsync(ClientSegment segment)
