@@ -1,4 +1,5 @@
 ﻿using Amazon.DynamoDBv2.DocumentModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace chal341.Repositories
@@ -8,5 +9,7 @@ namespace chal341.Repositories
         Task AddExchangeFeeAsync(Document exchangeFeeDb);
 
         Task<Document> GetExchangeFeeAsync(Document request);
+
+        Task<IEnumerable<Document>> GetAllExchangeFeesAsync();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace chal341.Repositories
@@ -21,6 +22,13 @@ namespace chal341.Repositories
         public async Task<Document> GetExchangeFeeAsync(Document request)
         {
             return await _table.GetItemAsync(request);
+        }
+
+        public async Task<IEnumerable<Document>> GetAllExchangeFeesAsync()
+        {
+            var config = new ScanOperationConfig();
+
+            return await _table.Scan(config).GetRemainingAsync();
         }
     }
 }
