@@ -12,6 +12,8 @@ namespace chal341
 
         public static string Locale => Environment.GetEnvironmentVariable("Locale") ?? ThrowExceptionForMissingVariable(nameof(Locale));
 
+        public static string TableName => Environment.GetEnvironmentVariable("TableName") ?? ThrowExceptionForMissingVariable(nameof(TableName));
+
         private static string ThrowExceptionForMissingVariable(string variableName)
         {
             throw new ArgumentNullException($"Missing environment variable: {variableName}");

@@ -11,7 +11,7 @@ namespace chal341.Repositories
 
         public ExchangeFeeRepository(IAmazonDynamoDB dynamoDbClient)
         {
-            _table = Table.LoadTable(dynamoDbClient, "ExchangeFee");
+            _table = Table.LoadTable(dynamoDbClient, Variables.TableName);
         }
 
         public async Task AddExchangeFeeAsync(Document documentModel)

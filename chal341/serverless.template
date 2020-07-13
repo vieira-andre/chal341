@@ -1,6 +1,12 @@
 {
   "AWSTemplateFormatVersion":"2010-09-09",
   "Transform":"AWS::Serverless-2016-10-31",
+  "Parameters":{
+    "TableNameParameter":{
+      "Type":"String",
+      "Default":"ExchangeFee"
+    }
+  },
   "Resources":{
     "AspNetCoreFunction":{
       "Type":"AWS::Serverless::Function",
@@ -19,7 +25,10 @@
             "ExchangeApiUrl":"https://api.exchangeratesapi.io/",
             "ExchangeApiPath":"latest?base={0}&symbols={1}",
             "HomeCurrency":"BRL",
-            "Locale":"pt-BR"
+            "Locale":"pt-BR",
+            "TableName":{
+              "Ref":"TableNameParameter"
+            }
           }
         },
         "Events":{
@@ -43,7 +52,9 @@
     "ExchangeFeeTable":{
       "Type":"AWS::DynamoDB::Table",
       "Properties":{
-        "TableName":"ExchangeFee",
+        "TableName":{
+          "Ref":"TableNameParameter"
+        },
         "AttributeDefinitions":[
           {
             "AttributeName":"ClientSegment",

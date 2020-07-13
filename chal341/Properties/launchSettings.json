@@ -17,7 +17,8 @@
         "ExchangeApiUrl": "https://api.exchangeratesapi.io/",
         "ExchangeApiPath": "latest?base={0}&symbols={1}",
         "HomeCurrency": "BRL",
-        "Locale": "pt-BR"
+        "Locale": "pt-BR",
+        "TableName": "ExchangeFee"
       }
     },
     "chal341": {
@@ -29,7 +30,8 @@
         "ExchangeApiUrl": "https://api.exchangeratesapi.io/",
         "ExchangeApiPath": "latest?base={0}&symbols={1}",
         "HomeCurrency": "BRL",
-        "Locale": "pt-BR"
+        "Locale": "pt-BR",
+        "TableName": "ExchangeFee"
       },
       "applicationUrl": "https://localhost:5001;http://localhost:5000"
     }
