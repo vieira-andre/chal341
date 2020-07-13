@@ -1,4 +1,5 @@
 ﻿using chal341.Contracts;
+using chal341.Extensions;
 using chal341.Mappers;
 using chal341.Models;
 using chal341.Repositories;
@@ -25,7 +26,17 @@ namespace chal341.Services
         {
             var exchangeRate = await GetExchangeRate(request.Code);
 
-            return default;
+            var document = _map.ToDocumentModel(request);
+            var responseFromDb = await _exchangeFeeRepository.GetExchangeFeeAsync(document);
+
+            var exchangeFee = _map.ToContract(responseFromDb);
+
+            if (exchangeFee is null)
+                return default;
+
+            var response = CalculatePriceQuotation(exchangeRate, request.Units, exchangeFee);
+
+            return response;
         }
 
         private async Task<ExchangeRate> GetExchangeRate(string baseCurrencyCode)
@@ -51,6 +62,18 @@ namespace chal341.Services
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
             return apiResponse.Rates.BRL;
+        }
+
+        private GetPriceQuotationResponse CalculatePriceQuotation(ExchangeRate exchangeRate, int foreignCurrencyUnits, GetExchangeFeeResponse exchangeFee)
+        {
+            decimal price = foreignCurrencyUnits * exchangeRate.Rate * (1 + (exchangeFee.FeeCharged / 100));
+
+            return new GetPriceQuotationResponse
+            {
+                Price = string.Concat(price.ToInvariantString(), " ", exchangeRate.CurrencyPair.quoteCurrency.Code),
+                Units = string.Concat(foreignCurrencyUnits, " ", exchangeRate.CurrencyPair.baseCurrency.Code),
+                Segment = exchangeFee.Segment
+            };
         }
     }
 }
