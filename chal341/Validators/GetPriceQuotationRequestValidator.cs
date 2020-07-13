@@ -27,7 +27,11 @@ namespace chal341.Validators
                 {
                     try
                     {
-                        _ = x.ToInvariantDecimal();
+                        var n = x.ToInvariantDecimal();
+
+                        if (!(n > 0)) {
+                            context.AddFailure("The amount must be positive.");
+                        }
                     }
                     catch (Exception ex)
                     {
