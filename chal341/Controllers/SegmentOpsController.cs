@@ -22,7 +22,9 @@ namespace chal341.Controllers
         [HttpGet("fee/{Segment}")]
         public async Task<GetExchangeFeeResponse> GetExchangeFeeAsync([FromRoute] GetExchangeFeeRequest request)
         {
-            throw new NotImplementedException();
+            var result = await _segmentOpsService.GetExchangeFeeAsync(request);
+
+            return result;
         }
 
         [HttpGet("fees")]
