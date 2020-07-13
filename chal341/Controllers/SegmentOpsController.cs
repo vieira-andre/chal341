@@ -20,11 +20,14 @@ namespace chal341.Controllers
         }
 
         [HttpGet("fee/{Segment}")]
-        public async Task<GetExchangeFeeResponse> GetExchangeFeeAsync([FromRoute] GetExchangeFeeRequest request)
+        public async Task<ActionResult<GetExchangeFeeResponse>> GetExchangeFeeAsync([FromRoute] GetExchangeFeeRequest request)
         {
             var result = await _segmentOpsService.GetExchangeFeeAsync(request);
 
-            return result;
+            if (result is null)
+                return NotFound();
+
+            return Ok(result);
         }
 
         [HttpGet("fees")]
