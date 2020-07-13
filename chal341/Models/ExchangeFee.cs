@@ -16,7 +16,7 @@ namespace chal341.Models
 
         private void ValidateSegment(string segment)
         {
-            if (Enum.TryParse(segment, out ClientSegment result))
+            if (Enum.TryParse(segment, out ClientSegment result) && !result.Equals(default))
                 Segment = result;
             else
                 throw new ArgumentException("The provided value is not a valid client segment.");
