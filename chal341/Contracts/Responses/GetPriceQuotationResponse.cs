@@ -4,7 +4,7 @@ namespace chal341.Contracts
 {
     public class GetPriceQuotationResponse
     {
-        public string PriceQuotation { get; set; }
+        public string Price { get; set; }
 
         public string Units { get; set; }
 
