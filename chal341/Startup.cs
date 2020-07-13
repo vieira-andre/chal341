@@ -49,6 +49,8 @@ namespace chal341
             { 
                 Region = RegionEndpoint.GetBySystemName(Environment.GetEnvironmentVariable("AWS_REGION")) 
             });
+
+            services.AddHttpClient();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
