@@ -27,5 +27,13 @@ namespace chal341.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet("exchangeRate/{Code}")]
+        public async Task<ActionResult<GetExchangeRateResponse>> GetExchangeRateAsync([FromRoute] GetExchangeRateRequest request)
+        {
+            var result = await _currencyOpsService.GetExchangeRateAsync(request);
+
+            return Ok(result);
+        }
     }
 }
