@@ -6,7 +6,7 @@ namespace chal341.Services
 {
     public interface ISegmentOpsService
     {
-        Task AddExchangeFeeAsync(SetExchangeFeeRequest request);
+        Task AddExchangeFeeAsync(AddExchangeFeeRequest request);
 
         Task<GetExchangeFeeResponse> GetExchangeFeeDbAsync(ClientSegment segment);
     }

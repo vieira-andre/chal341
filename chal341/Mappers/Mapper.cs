@@ -6,7 +6,7 @@ namespace chal341.Mappers
 {
     public class Mapper : IMapper
     {
-        public ExchangeFeeDb ToExchangeFeeDbModel(SetExchangeFeeRequest request)
+        public ExchangeFeeDb ToExchangeFeeDbModel(AddExchangeFeeRequest request)
         {
             return new ExchangeFeeDb
             {

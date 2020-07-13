@@ -14,7 +14,7 @@ namespace chal341
 
         private static string ThrowExceptionForMissingVariable(string variableName)
         {
-            throw new ArgumentNullException($"Missing environment variable: ${variableName}");
+            throw new ArgumentNullException($"Missing environment variable: {variableName}");
         }
     }
 }

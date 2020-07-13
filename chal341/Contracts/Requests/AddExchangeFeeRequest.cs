@@ -2,7 +2,7 @@
 
 namespace chal341.Contracts
 {
-    public class SetExchangeFeeRequest
+    public class AddExchangeFeeRequest
     {
         public ClientSegment Segment { get; set; }
 

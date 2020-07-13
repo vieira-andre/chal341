@@ -5,9 +5,9 @@ using System;
 
 namespace chal341.Validators
 {
-    public class SetExchangeFeeRequestValidator : AbstractValidator<SetExchangeFeeRequest>
+    public class AddExchangeFeeRequestValidator : AbstractValidator<AddExchangeFeeRequest>
     {
-        public SetExchangeFeeRequestValidator()
+        public AddExchangeFeeRequestValidator()
         {
             RuleFor(x => x.Segment)
                 .NotEmpty();

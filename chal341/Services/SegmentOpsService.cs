@@ -18,7 +18,7 @@ namespace chal341.Services
             _map = map;
         }
 
-        public async Task AddExchangeFeeAsync(SetExchangeFeeRequest request)
+        public async Task AddExchangeFeeAsync(AddExchangeFeeRequest request)
         {
             var exchangeFeeDb = _map.ToExchangeFeeDbModel(request);
 
