@@ -42,7 +42,11 @@ namespace chal341
 
             services.AddSwaggerGen(c => 
             { 
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Chal341 API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo 
+                { 
+                    Title = "Chal341 API", Version = "v1", Contact = new OpenApiContact { Name = "André Vieira" },
+                    Description = "An internal API for a financial institution, providing capability in managing currency-related operations."
+                });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
