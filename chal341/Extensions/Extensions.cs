@@ -6,7 +6,7 @@ namespace chal341.Extensions
 {
     public static class Extensions
     {
-        public static decimal ToDecimal(this string decimalAsString)
+        public static decimal ToInvariantDecimal(this string decimalAsString)
         {
             if (decimal.TryParse(decimalAsString, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out decimal result))
                 return result;

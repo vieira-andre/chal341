@@ -20,7 +20,7 @@ namespace chal341.Validators
                 {
                     try
                     {
-                        _ = fee.ToDecimal();
+                        _ = fee.ToInvariantDecimal();
                     }
                     catch (Exception ex)
                     {

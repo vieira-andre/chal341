@@ -11,7 +11,7 @@ namespace chal341.Mappers
             return new GetExchangeFeeResponse
             {
                 Segment = item["ClientSegment"].AsString().ParseFromString(),
-                FeeCharged = item["FeeCharged"].AsString().ToDecimal()
+                FeeCharged = item["FeeCharged"].AsString().ToInvariantDecimal()
             };
         }
 
@@ -20,7 +20,7 @@ namespace chal341.Mappers
             return new Document
             {
                 ["ClientSegment"] = request.Segment.ToString(),
-                ["FeeCharged"] = request.Fee.ToDecimal()
+                ["FeeCharged"] = request.Fee.ToInvariantDecimal()
             };
         }
 
