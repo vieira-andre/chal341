@@ -14,6 +14,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "AWS_REGION": "sa-east-1",
+        "ExchangeApiUrl": "https://api.exchangeratesapi.io/",
+        "ExchangeApiPath": "latest?base={0}&symbols={1}",
         "HomeCurrency": "BRL",
         "Locale": "pt-BR"
       }
@@ -24,6 +26,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "AWS_REGION": "sa-east-1",
+        "ExchangeApiUrl": "https://api.exchangeratesapi.io/",
+        "ExchangeApiPath": "latest?base={0}&symbols={1}",
         "HomeCurrency": "BRL",
         "Locale": "pt-BR"
       },
