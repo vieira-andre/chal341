@@ -45,7 +45,7 @@ namespace chal341
                 c.SwaggerDoc("v1", new OpenApiInfo 
                 { 
                     Title = "Chal341 API", Version = "v1", Contact = new OpenApiContact { Name = "André Vieira" },
-                    Description = "An internal API for a financial institution, providing capability in managing currency-related operations."
+                    Description = "[PoC] A serverless API for a financial institution, providing capability in managing currency-related operations."
                 });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
