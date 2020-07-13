@@ -8,12 +8,12 @@ namespace chal341.Extensions
     {
         public static decimal ToDecimal(this string decimalAsString)
         {
-            if (decimal.TryParse(decimalAsString, NumberStyles.AllowDecimalPoint, new CultureInfo(Variables.Locale), out decimal result))
+            if (decimal.TryParse(decimalAsString, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out decimal result))
                 return result;
             else
                 throw new FormatException("The string cannot be parsed to decimal. " +
-                    $"If a decimal point was provided, it must be in accordance with the current culture info ({Variables.Locale}). " +
-                    "Likewise, no thousands separator is allowed.");
+                    $"If there is a decimal point, it must be invariant ({CultureInfo.InvariantCulture.NumberFormat.NumberDecimalSeparator})");
+        }
 
         public static ClientSegment ParseFromString(this string segmentAsString)
         {
