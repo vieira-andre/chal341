@@ -25,7 +25,7 @@ namespace chal341.Controllers
             var result = await _segmentOpsService.GetExchangeFeeAsync(request);
 
             if (result is null)
-                return NotFound();
+                return NotFound(request);
 
             return Ok(result);
         }
