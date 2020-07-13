@@ -8,7 +8,7 @@ namespace chal341.Contracts
 
         public string Code { get => code; set => code = value.ToUpper(); }
 
-        public int Units { get; set; }
+        public string Amount { get; set; }
 
         public ClientSegment Segment { get; set; }
     }

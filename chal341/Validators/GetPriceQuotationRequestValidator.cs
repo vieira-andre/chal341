@@ -1,5 +1,7 @@
 ﻿using chal341.Contracts;
+using chal341.Extensions;
 using FluentValidation;
+using System;
 using System.Linq;
 
 namespace chal341.Validators
@@ -19,8 +21,19 @@ namespace chal341.Validators
                         context.AddFailure("Only letters are allowed.");
                 });
 
-            RuleFor(x => x.Units)
-                .GreaterThan(0);
+            RuleFor(x => x.Amount)
+                .NotEmpty()
+                .Custom((x, context) =>
+                {
+                    try
+                    {
+                        _ = x.ToInvariantDecimal();
+                    }
+                    catch (Exception ex)
+                    {
+                        context.AddFailure(ex.Message);
+                    }
+                });
 
             RuleFor(x => x.Segment)
                 .NotEmpty();

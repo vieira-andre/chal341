@@ -34,7 +34,7 @@ namespace chal341.Services
             if (exchangeFee is null)
                 return default;
 
-            var response = CalculatePriceQuotation(exchangeRate, request.Units, exchangeFee);
+            var response = CalculatePriceQuotation(exchangeRate, request.Amount.ToInvariantDecimal(), exchangeFee);
 
             return response;
         }
@@ -77,14 +77,14 @@ namespace chal341.Services
             return apiResponse.Rates.BRL;
         }
 
-        private GetPriceQuotationResponse CalculatePriceQuotation(ExchangeRate exchangeRate, int foreignCurrencyUnits, GetExchangeFeeResponse exchangeFee)
+        private GetPriceQuotationResponse CalculatePriceQuotation(ExchangeRate exchangeRate, decimal foreignCurrencyAmount, GetExchangeFeeResponse exchangeFee)
         {
-            decimal price = foreignCurrencyUnits * exchangeRate.Rate * (1 + (exchangeFee.FeeCharged / 100));
+            decimal price = foreignCurrencyAmount * exchangeRate.Rate * (1 + (exchangeFee.FeeCharged / 100));
 
             return new GetPriceQuotationResponse
             {
                 Price = string.Concat(price.ToInvariantString(), " ", exchangeRate.CurrencyPair.quoteCurrency.Code),
-                Units = string.Concat(foreignCurrencyUnits, " ", exchangeRate.CurrencyPair.baseCurrency.Code),
+                Amount = string.Concat(foreignCurrencyAmount.ToInvariantString(), " ", exchangeRate.CurrencyPair.baseCurrency.Code),
                 Segment = exchangeFee.Segment
             };
         }

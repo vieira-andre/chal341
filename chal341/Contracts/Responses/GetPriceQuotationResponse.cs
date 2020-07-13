@@ -6,7 +6,7 @@ namespace chal341.Contracts
     {
         public string Price { get; set; }
 
-        public string Units { get; set; }
+        public string Amount { get; set; }
 
         public ClientSegment Segment { get; set; }
     }
