@@ -8,11 +8,13 @@ namespace chal341.Mappers
     {
         public GetExchangeFeeResponse ToContract(Document item)
         {
-            return new GetExchangeFeeResponse
-            {
-                Segment = item["ClientSegment"].AsString().ParseFromString(),
-                FeeCharged = item["FeeCharged"].AsString().ToInvariantDecimal()
-            };
+            return item is null
+                ? default
+                : new GetExchangeFeeResponse
+                    {
+                        Segment = item["ClientSegment"].AsString().ParseFromString(),
+                        FeeCharged = item["FeeCharged"].AsString().ToInvariantDecimal()
+                    };
         }
 
         public Document ToDocumentModel(AddExchangeFeeRequest request)
