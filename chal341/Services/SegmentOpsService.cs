@@ -1,8 +1,6 @@
 ﻿using chal341.Contracts;
 using chal341.Mappers;
-using chal341.Models;
 using chal341.Repositories;
-using System;
 using System.Threading.Tasks;
 
 namespace chal341.Services
@@ -25,9 +23,13 @@ namespace chal341.Services
             await _exchangeFeeRepository.AddExchangeFeeAsync(exchangeFeeDb);
         }
 
-        public Task<GetExchangeFeeResponse> GetExchangeFeeDbAsync(ClientSegment segment)
+        public async Task<GetExchangeFeeResponse> GetExchangeFeeAsync(GetExchangeFeeRequest request)
         {
-            throw new NotImplementedException();
+            var document = _map.ToDocumentModel(request);
+
+            var response = await _exchangeFeeRepository.GetExchangeFeeAsync(document);
+
+            return _map.ToContract(response);
         }
     }
 }

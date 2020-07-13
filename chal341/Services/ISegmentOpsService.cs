@@ -1,5 +1,4 @@
 ﻿using chal341.Contracts;
-using chal341.Models;
 using System.Threading.Tasks;
 
 namespace chal341.Services
@@ -8,6 +7,6 @@ namespace chal341.Services
     {
         Task AddExchangeFeeAsync(AddExchangeFeeRequest request);
 
-        Task<GetExchangeFeeResponse> GetExchangeFeeDbAsync(ClientSegment segment);
+        Task<GetExchangeFeeResponse> GetExchangeFeeAsync(GetExchangeFeeRequest request);
     }
 }
