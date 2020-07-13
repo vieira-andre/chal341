@@ -18,7 +18,8 @@
           "Variables":{
             "ExchangeApiUrl":"https://api.exchangeratesapi.io/",
             "ExchangeApiPath":"latest?base={0}&symbols={1}",
-            "HomeCurrency":"BRL"
+            "HomeCurrency":"BRL",
+            "Locale":"pt-BR"
           }
         },
         "Events":{
