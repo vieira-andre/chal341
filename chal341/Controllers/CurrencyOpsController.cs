@@ -20,13 +20,12 @@ namespace chal341.Controllers
         [HttpGet("price")]
         public async Task<ActionResult<GetPriceQuotationResponse>> GetPriceQuotationAsync([FromQuery] GetPriceQuotationRequest request)
         {
-            return Ok();
-        }
+            var result = await _currencyOpsService.GetPriceQuotationAsync(request);
 
-        [HttpGet("prices")]
-        public async Task<ActionResult<GetPriceQuotationResponse>> GetPriceQuotation([FromQuery] GetAllPriceQuotationsRequest request)
-        {
-            return Ok("All quotes");
+            if (result is null)
+                return StatusCode(500);
+
+            return Ok(result);
         }
     }
 }
