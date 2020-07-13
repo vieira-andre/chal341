@@ -41,6 +41,7 @@ namespace chal341
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Chal341 API", Version = "v1" }); });
 
             services.AddScoped<IMapper, Mapper>();
+            services.AddScoped<ICurrencyOpsService, CurrencyOpsService>();
             services.AddScoped<ISegmentOpsService, SegmentOpsService>();
             services.AddScoped<IExchangeFeeRepository, ExchangeFeeRepository>();
 
