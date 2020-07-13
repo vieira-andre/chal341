@@ -75,7 +75,7 @@ namespace chal341
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/Prod/swagger/v1/swagger.json", "Chal341 API");
+                c.SwaggerEndpoint("/Prod/swagger/v1/swagger.json", "Chal341 API"); // remove '/Prod' when running locally
             });
         }
     }
