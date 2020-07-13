@@ -1,8 +1,8 @@
 ﻿using chal341.Contracts;
 using chal341.Services;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace chal341.Controllers
@@ -31,9 +31,14 @@ namespace chal341.Controllers
         }
 
         [HttpGet("fees")]
-        public async Task<IList<GetExchangeFeeResponse>> GetExchangeFeesAsync()
+        public async Task<ActionResult<IEnumerable<GetExchangeFeeResponse>>> GetAllExchangeFeesAsync()
         {
-            throw new NotImplementedException();
+            var results = await _segmentOpsService.GetAllExchangeFeesAsync();
+
+            if (!results.Any())
+                return NoContent();
+
+            return Ok(results);
         }
 
         [HttpPost("fee")]
