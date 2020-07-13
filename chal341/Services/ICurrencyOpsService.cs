@@ -6,5 +6,7 @@ namespace chal341.Services
     public interface ICurrencyOpsService
     {
         Task<GetPriceQuotationResponse> GetPriceQuotationAsync(GetPriceQuotationRequest request);
+
+        Task<GetExchangeRateResponse> GetExchangeRateAsync(GetExchangeRateRequest request);
     }
 }

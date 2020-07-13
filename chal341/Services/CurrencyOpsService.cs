@@ -24,7 +24,7 @@ namespace chal341.Services
 
         public async Task<GetPriceQuotationResponse> GetPriceQuotationAsync(GetPriceQuotationRequest request)
         {
-            var exchangeRate = await GetExchangeRate(request.Code);
+            var exchangeRate = await GetExchangeRateAsync(request.Code);
 
             var document = _map.ToDocumentModel(request);
             var responseFromDb = await _exchangeFeeRepository.GetExchangeFeeAsync(document);
@@ -39,14 +39,27 @@ namespace chal341.Services
             return response;
         }
 
-        private async Task<ExchangeRate> GetExchangeRate(string baseCurrencyCode)
+        public async Task<GetExchangeRateResponse> GetExchangeRateAsync(GetExchangeRateRequest request)
         {
-            decimal rate = await RetrieveExchangeRateFromApi(baseCurrencyCode);
+            decimal rate = await RetrieveExchangeRateFromApiAsync(request.Code);
+
+            var response = new GetExchangeRateResponse {
+                BaseCurrencyCode = request.Code,
+                QuoteCurrencyCode = Variables.HomeCurrency,
+                Rate = rate
+            };
+
+            return response;
+        }
+
+        private async Task<ExchangeRate> GetExchangeRateAsync(string baseCurrencyCode)
+        {
+            decimal rate = await RetrieveExchangeRateFromApiAsync(baseCurrencyCode);
 
             return new ExchangeRate(baseCurrencyCode, Variables.HomeCurrency, rate);
         }
 
-        private async Task<decimal> RetrieveExchangeRateFromApi(string baseCurrencyCode)
+        private async Task<decimal> RetrieveExchangeRateFromApiAsync(string baseCurrencyCode)
         {
             string path = string.Format(Variables.ExchangeApiPath, baseCurrencyCode, Variables.HomeCurrency);
 
