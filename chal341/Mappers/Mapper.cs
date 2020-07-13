@@ -1,6 +1,8 @@
 ﻿using Amazon.DynamoDBv2.DocumentModel;
 using chal341.Contracts;
 using chal341.Extensions;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace chal341.Mappers
 {
@@ -15,6 +17,11 @@ namespace chal341.Mappers
                         Segment = item["ClientSegment"].AsString().ParseFromString(),
                         FeeCharged = item["FeeCharged"].AsString().ToInvariantDecimal()
                     };
+        }
+
+        public IEnumerable<GetExchangeFeeResponse> ToContract(IEnumerable<Document> items)
+        {
+            return items.Select(ToContract);
         }
 
         public Document ToDocumentModel(AddExchangeFeeRequest request)
