@@ -1,6 +1,7 @@
 ﻿using chal341.Contracts;
 using chal341.Mappers;
 using chal341.Repositories;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace chal341.Services
@@ -28,6 +29,13 @@ namespace chal341.Services
             var document = _map.ToDocumentModel(request);
 
             var response = await _exchangeFeeRepository.GetExchangeFeeAsync(document);
+
+            return _map.ToContract(response);
+        }
+
+        public async Task<IEnumerable<GetExchangeFeeResponse>> GetAllExchangeFeesAsync()
+        {
+            var response = await _exchangeFeeRepository.GetAllExchangeFeesAsync();
 
             return _map.ToContract(response);
         }
