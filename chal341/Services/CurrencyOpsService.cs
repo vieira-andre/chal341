@@ -11,15 +11,15 @@ namespace chal341.Services
 {
     public class CurrencyOpsService : ICurrencyOpsService
     {
-        private readonly IHttpClientFactory _clientFactory;
         private readonly IExchangeFeeRepository _exchangeFeeRepository;
         private readonly IMapper _map;
+        private readonly IUtils _utils;
 
-        public CurrencyOpsService(IHttpClientFactory clientFactory, IExchangeFeeRepository exchangeFeeRepository, IMapper map)
+        public CurrencyOpsService(IExchangeFeeRepository exchangeFeeRepository, IMapper map, IUtils utils)
         {
-            _clientFactory = clientFactory;
             _exchangeFeeRepository = exchangeFeeRepository;
             _map = map;
+            _utils = utils;
         }
 
         public async Task<GetPriceQuotationResponse> GetPriceQuotationAsync(GetPriceQuotationRequest request)
@@ -63,15 +63,11 @@ namespace chal341.Services
         {
             string path = string.Format(Variables.ExchangeApiPath, baseCurrencyCode, Variables.HomeCurrency);
 
-            var httpRequest = new HttpRequestMessage(HttpMethod.Get, string.Concat(Variables.ExchangeApiUrl, path));
+            string requestUri = string.Concat(Variables.ExchangeApiUrl, path);
 
-            var httpClient = _clientFactory.CreateClient();
+            var apiResponseAsString = await _utils.ExecuteHttpRequestAsync(HttpMethod.Get, requestUri);
 
-            var httpResponse = await httpClient.SendAsync(httpRequest);
-
-            string responseAsString = await httpResponse.Content.ReadAsStringAsync();
-
-            ExchangeApiResponse apiResponse = JsonSerializer.Deserialize<ExchangeApiResponse>(responseAsString,
+            ExchangeApiResponse apiResponse = JsonSerializer.Deserialize<ExchangeApiResponse>(apiResponseAsString,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
             return apiResponse.Rates.BRL;
