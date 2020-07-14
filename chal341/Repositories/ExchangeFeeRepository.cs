@@ -14,7 +14,7 @@ namespace chal341.Repositories
             _table = Table.LoadTable(dynamoDbClient, Variables.TableName);
         }
 
-        public async Task AddExchangeFeeAsync(Document documentModel)
+        public async Task SaveExchangeFeeAsync(Document documentModel)
         {
             await _table.PutItemAsync(documentModel);
         }

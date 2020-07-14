@@ -6,7 +6,7 @@ namespace chal341.Repositories
 {
     public interface IExchangeFeeRepository
     {
-        Task AddExchangeFeeAsync(Document exchangeFeeDb);
+        Task SaveExchangeFeeAsync(Document exchangeFeeDb);
 
         Task<Document> GetExchangeFeeAsync(Document request);
 

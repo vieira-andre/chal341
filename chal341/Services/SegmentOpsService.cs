@@ -21,7 +21,7 @@ namespace chal341.Services
         {
             var exchangeFeeDb = _map.ToDocumentModel(request);
 
-            await _exchangeFeeRepository.AddExchangeFeeAsync(exchangeFeeDb);
+            await _exchangeFeeRepository.SaveExchangeFeeAsync(exchangeFeeDb);
         }
 
         public async Task<GetExchangeFeeResponse> GetExchangeFeeAsync(GetExchangeFeeRequest request)
