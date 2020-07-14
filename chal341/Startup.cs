@@ -54,6 +54,10 @@ namespace chal341
                 c.IncludeXmlComments(xmlPath);
             });
 
+            services.AddHttpClient();
+
+            services.AddSingleton<IUtils, Utils>();
+
             services.AddScoped<IMapper, Mapper>();
             services.AddScoped<ICurrencyOpsService, CurrencyOpsService>();
             services.AddScoped<ISegmentOpsService, SegmentOpsService>();
@@ -64,8 +68,6 @@ namespace chal341
             { 
                 Region = RegionEndpoint.GetBySystemName(Environment.GetEnvironmentVariable("AWS_REGION")) 
             });
-
-            services.AddHttpClient();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
