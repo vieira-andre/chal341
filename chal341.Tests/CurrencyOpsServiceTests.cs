@@ -8,6 +8,7 @@ using chal341.Services;
 using Moq;
 using System;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -23,6 +24,10 @@ namespace chal341.Tests
         public CurrencyOpsServiceTests()
         {
             _currencyOpsService = new CurrencyOpsService(_exchangeFeeRepositoryMock.Object, _mapperMock.Object, _utils.Object);
+
+            Environment.SetEnvironmentVariable("ExchangeApiUrl", "url");
+            Environment.SetEnvironmentVariable("ExchangeApiPath", "path");
+            Environment.SetEnvironmentVariable("HomeCurrency", "BRL");
         }
 
         [Fact]
@@ -41,21 +46,40 @@ namespace chal341.Tests
                 FeeCharged = 0.5M
             };
 
-            Environment.SetEnvironmentVariable("ExchangeApiUrl", "url");
-            Environment.SetEnvironmentVariable("ExchangeApiPath", "path");
-            Environment.SetEnvironmentVariable("HomeCurrency", "BRL");
-
             _utils.Setup(x => x.ExecuteHttpRequestAsync(It.IsAny<HttpMethod>(), It.IsAny<string>(), null)).ReturnsAsync(responseAsString);
             _mapperMock.Setup(x => x.ToDocumentModel(request)).Returns(document);
             _exchangeFeeRepositoryMock.Setup(x => x.GetExchangeFeeAsync(document)).ReturnsAsync(responseFromDb);
             _mapperMock.Setup(x => x.ToContract(responseFromDb)).Returns(exchangeFee);
 
             // Act
-            var response = await _currencyOpsService.GetPriceQuotationAsync(request);
+            var actualResult = await _currencyOpsService.GetPriceQuotationAsync(request);
 
             // Assert
-            Assert.Equal(request.Segment, response.Segment);
-            Assert.Equal($"5.3664462882525 BRL", response.Price);
+            Assert.Equal(request.Segment, actualResult.Segment);
+            Assert.Equal($"5.3664462882525 BRL", actualResult.Price);
+        }
+
+        [Fact]
+        public async Task GetExchangeRateAsync_ShouldReturnCorrectExchangeRate()
+        {
+            // Arrange
+            var request = new GetExchangeRateRequest { Code = "USD" };
+            var responseAsString = "{\"rates\":{\"BRL\":5.3397475505},\"base\":\"USD\",\"date\":\"2020-07-13\"}";
+
+            var expectedResult = new GetExchangeRateResponse
+            {
+                BaseCurrencyCode = request.Code,
+                QuoteCurrencyCode = "BRL",
+                Rate = 5.3397475505M
+            };
+
+            _utils.Setup(x => x.ExecuteHttpRequestAsync(It.IsAny<HttpMethod>(), It.IsAny<string>(), null)).ReturnsAsync(responseAsString);
+
+            // Act
+            var actualResult = await _currencyOpsService.GetExchangeRateAsync(request);
+
+            // Assert
+            Assert.Equal(JsonSerializer.Serialize(expectedResult), JsonSerializer.Serialize(actualResult));
         }
     }
 }
