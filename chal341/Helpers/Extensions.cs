@@ -16,7 +16,7 @@ namespace chal341.Helpers
 
         public static decimal ToInvariantDecimal(this string decimalAsString)
         {
-            if (decimal.TryParse(decimalAsString, NumberStyles.Number, CultureInfo.InvariantCulture, out decimal result))
+            if (decimal.TryParse(decimalAsString, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out decimal result))
                 return result;
             else
                 throw new FormatException("The string cannot be parsed to decimal. " +
