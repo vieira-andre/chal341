@@ -26,7 +26,7 @@ namespace chal341.Tests
         }
 
         [Fact]
-        public async Task GetPriceQuotationAsync_ShouldReturnCorrectPriceQuotation_WhenTheSegmentFeeExists()
+        public async Task GetPriceQuotationAsync_ShouldReturnCorrectPriceQuotation()
         {
             // Arrange
             var request = new GetPriceQuotationRequest { Code = "USD", Amount = "1", Segment = ClientSegment.RETL };
