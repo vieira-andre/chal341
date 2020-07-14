@@ -2,6 +2,7 @@ using Amazon;
 using Amazon.DynamoDBv2;
 using Amazon.Extensions.NETCore.Setup;
 using chal341.Filters;
+using chal341.Helpers;
 using chal341.Mappers;
 using chal341.Repositories;
 using chal341.Services;

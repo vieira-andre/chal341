@@ -1,6 +1,6 @@
 ﻿using Amazon.DynamoDBv2.DocumentModel;
 using chal341.Contracts;
-using chal341.Extensions;
+using chal341.Helpers;
 using System.Collections.Generic;
 using System.Linq;
 

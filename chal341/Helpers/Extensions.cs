@@ -2,7 +2,7 @@
 using System;
 using System.Globalization;
 
-namespace chal341.Extensions
+namespace chal341.Helpers
 {
     public static class Extensions
     {
