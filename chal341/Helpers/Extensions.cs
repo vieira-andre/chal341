@@ -6,12 +6,12 @@ namespace chal341.Helpers
 {
     public static class Extensions
     {
-        public static ClientSegment ParseFromString(this string segmentAsString)
+        public static CustomerSegment ParseFromString(this string segmentAsString)
         {
-            if (Enum.TryParse(segmentAsString, out ClientSegment result) && !result.Equals(default))
+            if (Enum.TryParse(segmentAsString, out CustomerSegment result) && !result.Equals(default))
                 return result;
             else
-                throw new ArgumentException($"The string cannot be parsed to a valid value of {nameof(ClientSegment)}.");
+                throw new ArgumentException($"The string cannot be parsed to a valid value of {nameof(CustomerSegment)}.");
         }
 
         public static decimal ToInvariantDecimal(this string decimalAsString)

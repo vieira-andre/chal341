@@ -17,8 +17,8 @@ namespace chal341.Contracts
         public string Amount { get; set; }
 
         /// <summary>
-        /// The client segment of which an exchange fee will be applied for the price quotation calculation.
+        /// The customer segment from which an exchange fee will be applied for the price quotation calculation.
         /// </summary>
-        public ClientSegment Segment { get; set; }
+        public CustomerSegment Segment { get; set; }
     }
 }

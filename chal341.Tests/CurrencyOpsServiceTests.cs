@@ -34,15 +34,15 @@ namespace chal341.Tests
         public async Task GetPriceQuotationAsync_ShouldReturnCorrectPriceQuotation()
         {
             // Arrange
-            var request = new GetPriceQuotationRequest { Code = "USD", Amount = "1", Segment = ClientSegment.RETL };
-            var document = new Document { ["ClientSegment"] = "RETL" };
-            var responseFromDb = new Document { ["ClientSegment"] = "RETL", ["FeeCharged"] = "0.5" };
+            var request = new GetPriceQuotationRequest { Code = "USD", Amount = "1", Segment = CustomerSegment.RETL };
+            var document = new Document { ["CustomerSegment"] = "RETL" };
+            var responseFromDb = new Document { ["CustomerSegment"] = "RETL", ["FeeCharged"] = "0.5" };
 
             var responseAsString = "{\"rates\":{\"BRL\":5.3397475505},\"base\":\"USD\",\"date\":\"2020-07-13\"}";
 
             var exchangeFee = new GetExchangeFeeResponse
             {
-                Segment = ClientSegment.RETL,
+                Segment = CustomerSegment.RETL,
                 FeeCharged = 0.5M
             };
 
@@ -63,9 +63,9 @@ namespace chal341.Tests
         public async Task GetPriceQuotationAsync_ShouldFail_WhenExchangeFeeIsNull()
         {
             // Arrange
-            var request = new GetPriceQuotationRequest { Code = "USD", Amount = "1", Segment = ClientSegment.RETL };
-            var document = new Document { ["ClientSegment"] = "RETL" };
-            var responseFromDb = new Document { ["ClientSegment"] = "RETL", ["FeeCharged"] = "0.5" };
+            var request = new GetPriceQuotationRequest { Code = "USD", Amount = "1", Segment = CustomerSegment.RETL };
+            var document = new Document { ["CustomerSegment"] = "RETL" };
+            var responseFromDb = new Document { ["CustomerSegment"] = "RETL", ["FeeCharged"] = "0.5" };
 
             var responseAsString = "{\"rates\":{\"BRL\":5.3397475505},\"base\":\"USD\",\"date\":\"2020-07-13\"}";
 

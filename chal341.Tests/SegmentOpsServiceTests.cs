@@ -25,8 +25,8 @@ namespace chal341.Tests
         public async Task AddExchangeFeeAsync_ShouldSucceed()
         {
             // Arrange
-            var request = new AddExchangeFeeRequest { Segment = ClientSegment.RETL, Fee = "0.5" };
-            var document = new Document { ["ClientSegment"] = "RETL", ["FeeCharged"] = "0.5" };
+            var request = new AddExchangeFeeRequest { Segment = CustomerSegment.RETL, Fee = "0.5" };
+            var document = new Document { ["CustomerSegment"] = "RETL", ["FeeCharged"] = "0.5" };
 
             _mapperMock.Setup(x => x.ToDocumentModel(request)).Returns(document);
             _exchangeFeeRepositoryMock.Setup(x => x.SaveExchangeFeeAsync(document)).Returns(Task.CompletedTask);

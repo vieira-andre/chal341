@@ -10,13 +10,13 @@ namespace chal341.Models
             FeeCharged = feeCharged;
         }
 
-        public ClientSegment Segment { get; private set; }
+        public CustomerSegment Segment { get; private set; }
 
         public decimal FeeCharged { get; private set; }
 
         private void ValidateSegment(string segment)
         {
-            if (Enum.TryParse(segment, out ClientSegment result) && !result.Equals(default))
+            if (Enum.TryParse(segment, out CustomerSegment result) && !result.Equals(default))
                 Segment = result;
             else
                 throw new ArgumentException("The provided value is not a valid client segment.");

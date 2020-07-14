@@ -1,12 +1,6 @@
 {
   "AWSTemplateFormatVersion":"2010-09-09",
   "Transform":"AWS::Serverless-2016-10-31",
-  "Parameters":{
-    "TableNameParameter":{
-      "Type":"String",
-      "Default":"ExchangeFee"
-    }
-  },
   "Resources":{
     "AspNetCoreFunction":{
       "Type":"AWS::Serverless::Function",
@@ -57,13 +51,13 @@
         },
         "AttributeDefinitions":[
           {
-            "AttributeName":"ClientSegment",
+            "AttributeName":"CustomerSegment",
             "AttributeType":"S"
           }
         ],
         "KeySchema":[
           {
-            "AttributeName":"ClientSegment",
+            "AttributeName":"CustomerSegment",
             "KeyType":"HASH"
           }
         ],
@@ -72,6 +66,12 @@
           "WriteCapacityUnits":5
         }
       }
+    }
+  },
+  "Parameters":{
+    "TableNameParameter":{
+      "Type":"String",
+      "Default":"ExchangeFee"
     }
   }
 }

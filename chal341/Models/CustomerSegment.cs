@@ -2,7 +2,7 @@
 
 namespace chal341.Models
 {
-    public enum ClientSegment
+    public enum CustomerSegment
     {
         Undefined,
         [Description("Retail")]

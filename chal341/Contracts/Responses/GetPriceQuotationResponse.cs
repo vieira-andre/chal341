@@ -8,6 +8,6 @@ namespace chal341.Contracts
 
         public string Amount { get; set; }
 
-        public ClientSegment Segment { get; set; }
+        public CustomerSegment Segment { get; set; }
     }
 }

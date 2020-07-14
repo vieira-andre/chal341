@@ -14,7 +14,7 @@ namespace chal341.Mappers
                 ? default
                 : new GetExchangeFeeResponse
                     {
-                        Segment = item["ClientSegment"].AsString().ParseFromString(),
+                        Segment = item["CustomerSegment"].AsString().ParseFromString(),
                         FeeCharged = item["FeeCharged"].AsString().ToInvariantDecimal()
                     };
         }
@@ -28,7 +28,7 @@ namespace chal341.Mappers
         {
             return new Document
             {
-                ["ClientSegment"] = request.Segment.ToString(),
+                ["CustomerSegment"] = request.Segment.ToString(),
                 ["FeeCharged"] = request.Fee.ToInvariantDecimal()
             };
         }
@@ -37,7 +37,7 @@ namespace chal341.Mappers
         {
             return new Document
             {
-                ["ClientSegment"] = request.Segment.ToString()
+                ["CustomerSegment"] = request.Segment.ToString()
             };
         }
 
@@ -45,7 +45,7 @@ namespace chal341.Mappers
         {
             return new Document
             {
-                ["ClientSegment"] = request.Segment.ToString()
+                ["CustomerSegment"] = request.Segment.ToString()
             };
         }
     }
