@@ -12,7 +12,7 @@ namespace chal341.Contracts
         public string Code { get => code; set => code = value.ToUpper(); }
 
         /// <summary>
-        /// The amount of foreign currency intended to be bought.
+        /// The amount of foreign currency intended to be purchased.
         /// </summary>
         public string Amount { get; set; }
 
