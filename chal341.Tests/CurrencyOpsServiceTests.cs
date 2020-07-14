@@ -60,6 +60,30 @@ namespace chal341.Tests
         }
 
         [Fact]
+        public async Task GetPriceQuotationAsync_ShouldFail_WhenExchangeFeeIsNull()
+        {
+            // Arrange
+            var request = new GetPriceQuotationRequest { Code = "USD", Amount = "1", Segment = ClientSegment.RETL };
+            var document = new Document { ["ClientSegment"] = "RETL" };
+            var responseFromDb = new Document { ["ClientSegment"] = "RETL", ["FeeCharged"] = "0.5" };
+
+            var responseAsString = "{\"rates\":{\"BRL\":5.3397475505},\"base\":\"USD\",\"date\":\"2020-07-13\"}";
+
+            GetExchangeFeeResponse exchangeFee = default;
+
+            _utils.Setup(x => x.ExecuteHttpRequestAsync(It.IsAny<HttpMethod>(), It.IsAny<string>(), null)).ReturnsAsync(responseAsString);
+            _mapperMock.Setup(x => x.ToDocumentModel(request)).Returns(document);
+            _exchangeFeeRepositoryMock.Setup(x => x.GetExchangeFeeAsync(document)).ReturnsAsync(responseFromDb);
+            _mapperMock.Setup(x => x.ToContract(responseFromDb)).Returns(exchangeFee);
+
+            // Act
+            var actualResult = await _currencyOpsService.GetPriceQuotationAsync(request);
+
+            // Assert
+            Assert.Null(actualResult);
+        }
+
+        [Fact]
         public async Task GetExchangeRateAsync_ShouldReturnCorrectExchangeRate()
         {
             // Arrange
