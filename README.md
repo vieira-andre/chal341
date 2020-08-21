@@ -3,7 +3,9 @@
 
 A serverless .NET Core API, leveraging AWS's API Gateway, Lambda and DynamoDB through CloudFormation.
 
-The proof of concept at play is of an internal API for a financial institution.
+Developed for the technical challenge of a financial institution.
+
+### Proposal
 
 The business area has identified the need to parameterize the amount charged for the purchase of foreign currencies by customer segments.
 
